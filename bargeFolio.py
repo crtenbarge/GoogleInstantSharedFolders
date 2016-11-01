@@ -2,7 +2,7 @@ import os
 import csv
 import subprocess
 
-teacher='teacher@school.org'
+teacher='teacher@school.org' #optional... needed for line 23
 portfolioAccount='portfolio@school.org'
 domain='school.org'
 
@@ -20,7 +20,7 @@ def makeFolder (org, parent, folderName, email):
 		proc1=subprocess.Popen('python ~/gam/gam.py user '+portfolioAccount+' add drivefile drivefilename '+folderName+' mimetype gfolder parentid '+parent, shell=True, stdout=subprocess.PIPE, )
 		output=proc1.communicate()[0].split()
 		key = max(output, key=len)
-		bashCommand1 = "python ~/gam/gam.py user %s add drivefileacl %s user %s role writer" % (portfolioAccount, key, teacher)
+		bashCommand1 = "python ~/gam/gam.py user %s add drivefileacl %s user %s role writer" % (portfolioAccount, key, teacher) #optional if you are not going to share the entire folder.
 		bashCommand2 = "python ~/gam/gam.py user %s add drivefileacl %s user %s role reader" % (portfolioAccount, key, email)
 		os.system(bashCommand1)
 		os.system(bashCommand2)
